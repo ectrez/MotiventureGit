@@ -18,6 +18,8 @@ public class DungeonButton : MonoBehaviour
             return;
         }
 
+        playerStats.StartDungeonRun();
+
         if (guildHUD != null)
             guildHUD.UpdateHUD();
 

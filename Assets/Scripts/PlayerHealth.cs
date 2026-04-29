@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public PlayerStats stats;
+    public FloorManager floorManager;
     public Transform fillTransform;
     public ScreenHueEffects hueEffects;
 
@@ -35,9 +36,7 @@ public class PlayerHealth : MonoBehaviour
             hueEffects.PlayDamageHue();
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     public void HealThirtyPercent()
@@ -71,8 +70,17 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         isDead = true;
+
+        int floorReached = 1;
+
+        if (floorManager != null)
+            floorReached = floorManager.GetFloor();
+
+        if (stats != null)
+            stats.SaveFloorRecord(floorReached);
+
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Guild");
+        SceneManager.LoadScene("DungeonReport");
     }
 
     public bool IsDead()

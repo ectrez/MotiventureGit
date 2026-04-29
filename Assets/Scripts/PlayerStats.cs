@@ -17,6 +17,15 @@ public class PlayerStats : MonoBehaviour
     public int rankLevel = 0;
     public string adventurerRank = "F";
 
+    [Header("Records")]
+    public int floorRecord = 0;
+
+    private int runXP = 0;
+    private int xpAtRunStart = 0;
+    private int xpNeededAtRunStart = 5;
+    private string rankAtRunStart = "F";
+    private bool rankedUpThisRun = false;
+
     void Awake()
     {
         LoadStats();
@@ -52,8 +61,25 @@ public class PlayerStats : MonoBehaviour
         return true;
     }
 
+    public void StartDungeonRun()
+    {
+        runXP = 0;
+        xpAtRunStart = currentXP;
+        xpNeededAtRunStart = xpNeeded;
+        rankAtRunStart = adventurerRank;
+        rankedUpThisRun = false;
+
+        PlayerPrefs.SetInt("RunXP", runXP);
+        PlayerPrefs.SetInt("XPAtRunStart", xpAtRunStart);
+        PlayerPrefs.SetInt("XPNeededAtRunStart", xpNeededAtRunStart);
+        PlayerPrefs.SetString("RankAtRunStart", rankAtRunStart);
+        PlayerPrefs.SetInt("RankedUpThisRun", 0);
+        PlayerPrefs.Save();
+    }
+
     public void AddXP(int amount)
     {
+        runXP += amount;
         currentXP += amount;
 
         while (currentXP >= xpNeeded)
@@ -61,10 +87,26 @@ public class PlayerStats : MonoBehaviour
             currentXP -= xpNeeded;
             rankLevel++;
             xpNeeded *= 2;
+            rankedUpThisRun = true;
             UpdateRankName();
         }
 
+        PlayerPrefs.SetInt("RunXP", runXP);
+        PlayerPrefs.SetInt("RankedUpThisRun", rankedUpThisRun ? 1 : 0);
+
         SaveStats();
+    }
+
+    public void SaveFloorRecord(int floorReached)
+    {
+        if (floorReached > floorRecord)
+        {
+            floorRecord = floorReached;
+            SaveStats();
+        }
+
+        PlayerPrefs.SetInt("LastRunFloor", floorReached);
+        PlayerPrefs.Save();
     }
 
     private void UpdateRankName()
@@ -93,6 +135,8 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("RankLevel", rankLevel);
         PlayerPrefs.SetString("AdventurerRank", adventurerRank);
 
+        PlayerPrefs.SetInt("FloorRecord", floorRecord);
+
         PlayerPrefs.Save();
     }
 
@@ -110,5 +154,7 @@ public class PlayerStats : MonoBehaviour
         xpNeeded = PlayerPrefs.GetInt("XPNeeded", 5);
         rankLevel = PlayerPrefs.GetInt("RankLevel", 0);
         adventurerRank = PlayerPrefs.GetString("AdventurerRank", "F");
+
+        floorRecord = PlayerPrefs.GetInt("FloorRecord", 0);
     }
 }

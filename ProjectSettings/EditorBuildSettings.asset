@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Profile.unity
     guid: ee941f813dce4e64aa6ad50e5252f256
+  - enabled: 1
+    path: Assets/Scenes/DungeonReport.unity
+    guid: 9ba8d873f91dd8a4abbd5ca038466252
   m_configObjects: {}
