@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
     public FloorManager floorManager;
     public EnemyCombat enemyCombat;
     public Transform fillTransform;
+    public PlayerStats playerStats;
 
     public int baseMaxHealth = 10;
 
@@ -13,6 +14,8 @@ public class EnemyHealth : MonoBehaviour
 
     public Vector3 fullHealthPosition;
     public Vector3 zeroHealthPosition;
+
+    private bool xpGiven = false;
 
     void Start()
     {
@@ -32,11 +35,26 @@ public class EnemyHealth : MonoBehaviour
         UpdateBar();
 
         if (currentHealth == 0)
+        {
+            GiveXP();
             enemyCombat.Die();
+        }
+    }
+
+    private void GiveXP()
+    {
+        if (xpGiven) return;
+
+        xpGiven = true;
+
+        if (playerStats != null)
+            playerStats.AddXP(1);
     }
 
     public void ResetForCurrentFloor()
     {
+        xpGiven = false;
+
         int floor = 1;
 
         if (floorManager != null)

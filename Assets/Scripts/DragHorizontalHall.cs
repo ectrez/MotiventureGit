@@ -1,47 +1,33 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragHorizontalHall : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragHorizontalHall : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    public RectTransform content;
-    public RectTransform viewport;
+    [Header("Hall Object")]
+    public RectTransform hallContent;
 
-    public float dragSpeed = 1f;
-    public float smoothTime = 0.15f;
+    [Header("Movement Limits")]
+    public float maxRightX = 965f;
+    public float maxLeftX = -923f;
+    public float fixedY = -20f;
 
-    private float minX;
-    private float maxX;
-    private float targetX;
-    private float velocityX;
+    private float pointerStartX;
+    private float hallStartX;
 
-    void Start()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        maxX = 0f;
-        minX = -(content.rect.width - viewport.rect.width);
-        targetX = content.anchoredPosition.x;
-    }
-
-    void Update()
-    {
-        Vector2 pos = content.anchoredPosition;
-
-        pos.x = Mathf.SmoothDamp(pos.x, targetX, ref velocityX, smoothTime);
-        content.anchoredPosition = pos;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        velocityX = 0f;
+        pointerStartX = eventData.position.x;
+        hallStartX = hallContent.localPosition.x;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        targetX += eventData.delta.x * dragSpeed;
-        targetX = Mathf.Clamp(targetX, minX, maxX);
-    }
+        float pointerDeltaX = eventData.position.x - pointerStartX;
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        targetX = Mathf.Clamp(targetX, minX, maxX);
+        float newX = hallStartX + pointerDeltaX;
+
+        newX = Mathf.Clamp(newX, maxLeftX, maxRightX);
+
+        hallContent.localPosition = new Vector3(newX, fixedY, 0f);
     }
 }
