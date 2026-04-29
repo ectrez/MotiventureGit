@@ -7,6 +7,11 @@ public class EnemyHealth : MonoBehaviour
     public Transform fillTransform;
     public PlayerStats playerStats;
 
+    [Header("Floating XP Text")]
+    public GameObject xpTextPrefab;
+    public Transform xpTextSpawnPoint;
+    public Transform canvasTransform;
+
     public int baseMaxHealth = 10;
 
     public int maxHealth;
@@ -49,6 +54,27 @@ public class EnemyHealth : MonoBehaviour
 
         if (playerStats != null)
             playerStats.AddXP(1);
+
+        SpawnXPText();
+    }
+
+    private void SpawnXPText()
+    {
+        if (xpTextPrefab == null) return;
+        if (canvasTransform == null) return;
+
+        GameObject obj = Instantiate(xpTextPrefab, canvasTransform);
+
+        if (xpTextSpawnPoint != null)
+        {
+            obj.transform.position = xpTextSpawnPoint.position;
+        }
+        else
+        {
+            obj.transform.position = transform.position;
+        }
+
+        obj.SetActive(true);
     }
 
     public void ResetForCurrentFloor()

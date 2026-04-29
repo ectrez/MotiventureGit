@@ -2305,6 +2305,7 @@ MonoBehaviour:
   xpNeeded: 5
   rankLevel: 0
   adventurerRank: F
+  floorRecord: 0
 --- !u!4 &1259836246
 Transform:
   m_ObjectHideFlags: 0
@@ -2750,6 +2751,9 @@ MonoBehaviour:
   enemyCombat: {fileID: 755149526}
   fillTransform: {fileID: 427007344}
   playerStats: {fileID: 1259836245}
+  xpTextPrefab: {fileID: 2892014743441723515, guid: 37c4ef95331a4ef4c93d5ee99a343112, type: 3}
+  xpTextSpawnPoint: {fileID: 1118270226}
+  canvasTransform: {fileID: 1118270226}
   baseMaxHealth: 10
   maxHealth: 0
   currentHealth: 0
@@ -2786,6 +2790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 2048986945}
+  floorManager: {fileID: 0}
   fillTransform: {fileID: 1293110514}
   hueEffects: {fileID: 599821349}
   maxHealth: 20
@@ -3154,6 +3159,7 @@ MonoBehaviour:
   xpNeeded: 5
   rankLevel: 0
   adventurerRank: F
+  floorRecord: 0
 --- !u!114 &2048986946
 MonoBehaviour:
   m_ObjectHideFlags: 0
