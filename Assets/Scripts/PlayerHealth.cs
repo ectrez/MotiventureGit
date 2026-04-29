@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -34,7 +35,9 @@ public class PlayerHealth : MonoBehaviour
             hueEffects.PlayDamageHue();
 
         if (currentHealth <= 0)
-            isDead = true;
+        {
+            Die();
+        }
     }
 
     public void HealThirtyPercent()
@@ -63,6 +66,13 @@ public class PlayerHealth : MonoBehaviour
     {
         float percent = (float)currentHealth / maxHealth;
         fillTransform.localPosition = Vector3.Lerp(zeroHealthPosition, fullHealthPosition, percent);
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Guild");
     }
 
     public bool IsDead()
