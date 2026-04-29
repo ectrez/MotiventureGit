@@ -516,7 +516,7 @@ RectTransform:
   m_GameObject: {fileID: 405761988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 1.5132844, y: 7.686538, z: 1.5132844}
+  m_LocalScale: {x: 1.5132844, y: 7.9747834, z: 1.5132844}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 17429056}
@@ -1063,14 +1063,14 @@ RectTransform:
   m_GameObject: {fileID: 530624726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4142, y: 2.4142, z: 2.4142}
+  m_LocalScale: {x: 2.5636392, y: 2.5636392, z: 2.5636392}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 455841566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 898}
+  m_AnchoredPosition: {x: -16, y: 893}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530624728
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1301,19 +1301,19 @@ MonoBehaviour:
     swing: {fileID: 21300000, guid: 9a56ba6f5f026fd468320f5dde14697d, type: 3}
     hit: {fileID: 21300000, guid: 65b0654c182837b4e991c308075a8a23, type: 3}
     parried: {fileID: 21300000, guid: 4510f6ec24b48ba4b9e259ae572377fc, type: 3}
-    dead: {fileID: 21300000, guid: 6d13bff2474b1dc459630489283fdb3c, type: 3}
+    dead: {fileID: 21300000, guid: 249f65d4157583742874b4da5d38db60, type: 3}
   right:
     idle: {fileID: 21300000, guid: 42bf3e5e701fe614a936f75daa12924a, type: 3}
     swing: {fileID: 21300000, guid: e518eb39fb1768e47b6f7f24360ccbb1, type: 3}
     hit: {fileID: 21300000, guid: c47bf136ec4896f4d95c24a10a265df9, type: 3}
     parried: {fileID: 21300000, guid: 4510f6ec24b48ba4b9e259ae572377fc, type: 3}
-    dead: {fileID: 21300000, guid: 6d13bff2474b1dc459630489283fdb3c, type: 3}
+    dead: {fileID: 21300000, guid: 249f65d4157583742874b4da5d38db60, type: 3}
   overhead:
     idle: {fileID: 21300000, guid: 8aeca133c7bda704b82dfadef80c7368, type: 3}
     swing: {fileID: 21300000, guid: cfa0eae9780eece4597557a487b016e7, type: 3}
     hit: {fileID: 21300000, guid: c2ebedbe9168b7946a7758c9f78a4ba9, type: 3}
     parried: {fileID: 21300000, guid: 4510f6ec24b48ba4b9e259ae572377fc, type: 3}
-    dead: {fileID: 21300000, guid: 6d13bff2474b1dc459630489283fdb3c, type: 3}
+    dead: {fileID: 21300000, guid: 249f65d4157583742874b4da5d38db60, type: 3}
   decisionInterval: 0.5
   swingDuration: 0.5
   hitDuration: 0.5
@@ -1462,7 +1462,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: d64e770fa60dfd64fbb4c0a42fc1b26f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2237,7 +2237,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: d64e770fa60dfd64fbb4c0a42fc1b26f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2778,7 +2778,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: d64e770fa60dfd64fbb4c0a42fc1b26f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2930,7 +2930,7 @@ MonoBehaviour:
   overhead:
     idle: {fileID: 21300000, guid: 192db9a2f994f574dbb4cb6ebe00e39d, type: 3}
     swing: {fileID: 21300000, guid: f2f041d913c0e6741a024f3ed75ce9f6, type: 3}
-  potionUseSprite: {fileID: 21300000, guid: b702bbec9c2af2944b15f6e2adeddbda, type: 3}
+  potionUseSprite: {fileID: 21300000, guid: 49231d725fda0f540bd029f57d5ae955, type: 3}
   fireballCastSprite: {fileID: 21300000, guid: d21384bc2276bb6479bb58d0d596e707, type: 3}
   swingDuration: 0.3
   potionSpriteDuration: 0.3
