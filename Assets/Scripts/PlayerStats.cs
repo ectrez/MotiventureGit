@@ -7,6 +7,9 @@ public class PlayerStats : MonoBehaviour
     public int agility = 10;
     public int intelligence = 10;
 
+    [Header("Currency")]
+    public int gold = 0;
+
     [Header("Keys")]
     public int keys = 6;
     public int maxKeys = 6;
@@ -21,9 +24,7 @@ public class PlayerStats : MonoBehaviour
     public int floorRecord = 0;
 
     private int runXP = 0;
-    private int xpAtRunStart = 0;
-    private int xpNeededAtRunStart = 5;
-    private string rankAtRunStart = "F";
+    private int runGold = 0;
     private bool rankedUpThisRun = false;
 
     void Awake()
@@ -53,6 +54,8 @@ public class PlayerStats : MonoBehaviour
 
     public bool UseKey()
     {
+        LoadStats();
+
         if (keys <= 0)
             return false;
 
@@ -63,23 +66,34 @@ public class PlayerStats : MonoBehaviour
 
     public void StartDungeonRun()
     {
+        LoadStats();
+
         runXP = 0;
-        xpAtRunStart = currentXP;
-        xpNeededAtRunStart = xpNeeded;
-        rankAtRunStart = adventurerRank;
+        runGold = 0;
         rankedUpThisRun = false;
 
-        PlayerPrefs.SetInt("RunXP", runXP);
-        PlayerPrefs.SetInt("XPAtRunStart", xpAtRunStart);
-        PlayerPrefs.SetInt("XPNeededAtRunStart", xpNeededAtRunStart);
-        PlayerPrefs.SetString("RankAtRunStart", rankAtRunStart);
+        PlayerPrefs.SetInt("RunXP", 0);
+        PlayerPrefs.SetInt("RunGold", 0);
+
+        PlayerPrefs.SetInt("XPAtRunStart", currentXP);
+        PlayerPrefs.SetInt("XPNeededAtRunStart", xpNeeded);
+        PlayerPrefs.SetInt("XPAfterRun", currentXP);
+        PlayerPrefs.SetInt("XPNeededAfterRun", xpNeeded);
+
+        PlayerPrefs.SetString("RankAtRunStart", adventurerRank);
+        PlayerPrefs.SetString("RankAfterRun", adventurerRank);
         PlayerPrefs.SetInt("RankedUpThisRun", 0);
+
         PlayerPrefs.Save();
     }
 
     public void AddXP(int amount)
     {
+        LoadStats();
+
+        runXP = PlayerPrefs.GetInt("RunXP", 0);
         runXP += amount;
+
         currentXP += amount;
 
         while (currentXP >= xpNeeded)
@@ -92,21 +106,77 @@ public class PlayerStats : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("RunXP", runXP);
+        PlayerPrefs.SetInt("XPAfterRun", currentXP);
+        PlayerPrefs.SetInt("XPNeededAfterRun", xpNeeded);
+        PlayerPrefs.SetString("RankAfterRun", adventurerRank);
         PlayerPrefs.SetInt("RankedUpThisRun", rankedUpThisRun ? 1 : 0);
 
         SaveStats();
     }
 
+    public void AddGold(int amount)
+    {
+        LoadStats();
+
+        runGold = PlayerPrefs.GetInt("RunGold", 0);
+        runGold += amount;
+
+        gold += amount;
+
+        PlayerPrefs.SetInt("RunGold", runGold);
+
+        SaveStats();
+    }
+
+    public bool SpendGold(int amount)
+    {
+        LoadStats();
+
+        if (gold < amount)
+            return false;
+
+        gold -= amount;
+        SaveStats();
+        return true;
+    }
+
     public void SaveFloorRecord(int floorReached)
     {
+        LoadStats();
+
         if (floorReached > floorRecord)
-        {
             floorRecord = floorReached;
-            SaveStats();
-        }
 
         PlayerPrefs.SetInt("LastRunFloor", floorReached);
-        PlayerPrefs.Save();
+        SaveStats();
+    }
+
+    public void AddStrength(int amount)
+    {
+        LoadStats();
+        strength += amount;
+        SaveStats();
+    }
+
+    public void AddVitality(int amount)
+    {
+        LoadStats();
+        vitality += amount;
+        SaveStats();
+    }
+
+    public void AddAgility(int amount)
+    {
+        LoadStats();
+        agility += amount;
+        SaveStats();
+    }
+
+    public void AddIntelligence(int amount)
+    {
+        LoadStats();
+        intelligence += amount;
+        SaveStats();
     }
 
     private void UpdateRankName()
@@ -122,10 +192,14 @@ public class PlayerStats : MonoBehaviour
 
     public void SaveStats()
     {
+        PlayerPrefs.SetInt("HasSave", 1);
+
         PlayerPrefs.SetInt("Strength", strength);
         PlayerPrefs.SetInt("Vitality", vitality);
         PlayerPrefs.SetInt("Agility", agility);
         PlayerPrefs.SetInt("Intelligence", intelligence);
+
+        PlayerPrefs.SetInt("Gold", gold);
 
         PlayerPrefs.SetInt("Keys", keys);
         PlayerPrefs.SetInt("MaxKeys", maxKeys);
@@ -142,19 +216,27 @@ public class PlayerStats : MonoBehaviour
 
     public void LoadStats()
     {
-        strength = PlayerPrefs.GetInt("Strength", 10);
-        vitality = PlayerPrefs.GetInt("Vitality", 10);
-        agility = PlayerPrefs.GetInt("Agility", 10);
-        intelligence = PlayerPrefs.GetInt("Intelligence", 10);
+        if (!PlayerPrefs.HasKey("HasSave"))
+        {
+            SaveStats();
+            return;
+        }
 
-        keys = PlayerPrefs.GetInt("Keys", 6);
-        maxKeys = PlayerPrefs.GetInt("MaxKeys", 6);
+        strength = PlayerPrefs.GetInt("Strength");
+        vitality = PlayerPrefs.GetInt("Vitality");
+        agility = PlayerPrefs.GetInt("Agility");
+        intelligence = PlayerPrefs.GetInt("Intelligence");
 
-        currentXP = PlayerPrefs.GetInt("CurrentXP", 0);
-        xpNeeded = PlayerPrefs.GetInt("XPNeeded", 5);
-        rankLevel = PlayerPrefs.GetInt("RankLevel", 0);
-        adventurerRank = PlayerPrefs.GetString("AdventurerRank", "F");
+        gold = PlayerPrefs.GetInt("Gold");
 
-        floorRecord = PlayerPrefs.GetInt("FloorRecord", 0);
+        keys = PlayerPrefs.GetInt("Keys");
+        maxKeys = PlayerPrefs.GetInt("MaxKeys");
+
+        currentXP = PlayerPrefs.GetInt("CurrentXP");
+        xpNeeded = PlayerPrefs.GetInt("XPNeeded");
+        rankLevel = PlayerPrefs.GetInt("RankLevel");
+        adventurerRank = PlayerPrefs.GetString("AdventurerRank");
+
+        floorRecord = PlayerPrefs.GetInt("FloorRecord");
     }
 }

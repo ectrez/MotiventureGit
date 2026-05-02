@@ -1180,6 +1180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 591740313}
   - component: {fileID: 591740312}
+  - component: {fileID: 591740314}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1216,6 +1217,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591740314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591740311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41697faab233d54409206456101ee0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 10
+  vitality: 10
+  agility: 10
+  intelligence: 10
+  gold: 0
+  keys: 6
+  maxKeys: 6
+  currentXP: 0
+  xpNeeded: 5
+  rankLevel: 0
+  adventurerRank: F
+  floorRecord: 0
 --- !u!1 &599821348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1499,98 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &854846326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854846327}
+  - component: {fileID: 854846330}
+  - component: {fileID: 854846329}
+  - component: {fileID: 854846328}
+  m_Layer: 5
+  m_Name: RewardSpawnArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &854846327
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854846326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.4459, y: 5.4459, z: 5.4459}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1118270226}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &854846328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854846326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbe3a55dc556ec42a53455f22780e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpPrefab: {fileID: 2892014743441723515, guid: 37c4ef95331a4ef4c93d5ee99a343112, type: 3}
+  goldPrefab: {fileID: 4388140996126566730, guid: e145231467ed6f9418e5c7307e7c19fe, type: 3}
+  spawnArea: {fileID: 854846327}
+  canvasTransform: {fileID: 1118270226}
+--- !u!114 &854846329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854846326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &854846330
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854846326}
+  m_CullTransparentMesh: 1
 --- !u!1 &859823156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1852,7 @@ RectTransform:
   m_Children:
   - {fileID: 405761989}
   - {fileID: 487316478}
+  - {fileID: 854846327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2594,70 +2712,16 @@ MonoBehaviour:
   floorManager: {fileID: 591740312}
   enemyCombat: {fileID: 755149526}
   fillTransform: {fileID: 427007344}
-  playerStats: {fileID: 1455449699}
-  xpTextPrefab: {fileID: 2892014743441723515, guid: 37c4ef95331a4ef4c93d5ee99a343112, type: 3}
-  xpTextSpawnPoint: {fileID: 1118270226}
-  canvasTransform: {fileID: 1118270226}
+  playerStats: {fileID: 591740314}
+  rewardSpawner: {fileID: 854846328}
+  xpReward: 1
+  minGoldReward: 1
+  maxGoldReward: 5
   baseMaxHealth: 10
   maxHealth: 0
   currentHealth: 0
   fullHealthPosition: {x: 0, y: 0, z: 0}
   zeroHealthPosition: {x: -5.2, y: 0, z: 0}
---- !u!1 &1455449698
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1455449700}
-  - component: {fileID: 1455449699}
-  m_Layer: 0
-  m_Name: PlayerStats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1455449699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455449698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41697faab233d54409206456101ee0fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 10
-  vitality: 10
-  agility: 10
-  intelligence: 10
-  keys: 6
-  maxKeys: 6
-  currentXP: 0
-  xpNeeded: 5
-  rankLevel: 0
-  adventurerRank: F
-  floorRecord: 0
---- !u!4 &1455449700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455449698}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34232736, y: 2.5636663, z: 239.94083}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478154864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2689,7 +2753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 2048986945}
-  floorManager: {fileID: 0}
+  floorManager: {fileID: 591740312}
   fillTransform: {fileID: 1293110514}
   hueEffects: {fileID: 599821349}
   maxHealth: 20
@@ -2968,6 +3032,7 @@ MonoBehaviour:
   vitality: 10
   agility: 10
   intelligence: 10
+  gold: 0
   keys: 6
   maxKeys: 6
   currentXP: 0
@@ -3092,4 +3157,3 @@ SceneRoots:
   - {fileID: 599821350}
   - {fileID: 258888889}
   - {fileID: 1118270226}
-  - {fileID: 1455449700}

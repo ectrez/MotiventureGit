@@ -10,7 +10,11 @@ public class DungeonButton : MonoBehaviour
 
     public void EnterDungeon()
     {
-        if (playerStats == null) return;
+        if (playerStats == null)
+        {
+            Debug.LogWarning("DungeonButton: PlayerStats is not assigned.");
+            return;
+        }
 
         if (!playerStats.UseKey())
         {
