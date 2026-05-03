@@ -49,10 +49,10 @@ public class ProfileStatsUI : MonoBehaviour
             rankText.text = "Rank: " + playerStats.adventurerRank;
 
         if (keysText != null)
-            keysText.text = "Keys: " + playerStats.keys + "/" + playerStats.maxKeys;
+            keysText.text = playerStats.keys + "/" + playerStats.maxKeys;
 
         if (goldText != null)
-            goldText.text = "Gold: " + playerStats.gold;
+            goldText.text = ": " + playerStats.gold;
 
         if (xpText != null)
             xpText.text = "XP: " + playerStats.currentXP + "/" + playerStats.xpNeeded;
