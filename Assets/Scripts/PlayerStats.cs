@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -27,9 +28,12 @@ public class PlayerStats : MonoBehaviour
     private int runGold = 0;
     private bool rankedUpThisRun = false;
 
+    private const int KEY_COOLDOWN_SECONDS = 10800; // 3 hours
+
     void Awake()
     {
         LoadStats();
+        RefreshKeysIfNeeded();
     }
 
     public int GetMaxHealth()
@@ -54,20 +58,41 @@ public class PlayerStats : MonoBehaviour
 
     public bool UseKey()
     {
-        LoadStats();
+        RefreshKeysIfNeeded();
 
         if (keys <= 0)
             return false;
 
         keys--;
+
+        PlayerPrefs.SetString("LastKeyUseTime", DateTime.Now.ToString());
+
         SaveStats();
         return true;
     }
 
+    public void RefreshKeysIfNeeded()
+    {
+        if (!PlayerPrefs.HasKey("LastKeyUseTime"))
+        {
+            PlayerPrefs.SetString("LastKeyUseTime", DateTime.Now.ToString());
+            PlayerPrefs.Save();
+            return;
+        }
+
+        DateTime lastUse = DateTime.Parse(PlayerPrefs.GetString("LastKeyUseTime"));
+        TimeSpan elapsed = DateTime.Now - lastUse;
+
+        if (elapsed.TotalSeconds >= KEY_COOLDOWN_SECONDS)
+        {
+            keys = maxKeys;
+            PlayerPrefs.SetString("LastKeyUseTime", DateTime.Now.ToString());
+            SaveStats();
+        }
+    }
+
     public void StartDungeonRun()
     {
-        LoadStats();
-
         runXP = 0;
         runGold = 0;
         rankedUpThisRun = false;
@@ -89,8 +114,6 @@ public class PlayerStats : MonoBehaviour
 
     public void AddXP(int amount)
     {
-        LoadStats();
-
         runXP = PlayerPrefs.GetInt("RunXP", 0);
         runXP += amount;
 
@@ -116,8 +139,6 @@ public class PlayerStats : MonoBehaviour
 
     public void AddGold(int amount)
     {
-        LoadStats();
-
         runGold = PlayerPrefs.GetInt("RunGold", 0);
         runGold += amount;
 
@@ -130,8 +151,6 @@ public class PlayerStats : MonoBehaviour
 
     public bool SpendGold(int amount)
     {
-        LoadStats();
-
         if (gold < amount)
             return false;
 
@@ -142,8 +161,6 @@ public class PlayerStats : MonoBehaviour
 
     public void SaveFloorRecord(int floorReached)
     {
-        LoadStats();
-
         if (floorReached > floorRecord)
             floorRecord = floorReached;
 
@@ -153,28 +170,24 @@ public class PlayerStats : MonoBehaviour
 
     public void AddStrength(int amount)
     {
-        LoadStats();
         strength += amount;
         SaveStats();
     }
 
     public void AddVitality(int amount)
     {
-        LoadStats();
         vitality += amount;
         SaveStats();
     }
 
     public void AddAgility(int amount)
     {
-        LoadStats();
         agility += amount;
         SaveStats();
     }
 
     public void AddIntelligence(int amount)
     {
-        LoadStats();
         intelligence += amount;
         SaveStats();
     }
