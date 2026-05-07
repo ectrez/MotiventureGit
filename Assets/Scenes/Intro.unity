@@ -1288,7 +1288,6 @@ GameObject:
   - component: {fileID: 591740313}
   - component: {fileID: 591740312}
   - component: {fileID: 591740314}
-  - component: {fileID: 591740319}
   - component: {fileID: 591740318}
   - component: {fileID: 591740317}
   - component: {fileID: 591740316}
@@ -1574,34 +1573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fbd47455dae7e40962eb3333fbfdec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 2138961992}
   useDungeonMusic: 0
---- !u!114 &591740319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 591740311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eefacbde0fde664f84fb9321b702057, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
-  swordSwing: {fileID: 0}
-  enemyHurt: {fileID: 0}
-  enemyDead: {fileID: 0}
-  playerHurt: {fileID: 0}
-  parry: {fileID: 0}
-  fireball: {fileID: 0}
-  potionUse: {fileID: 0}
-  buttonHover: {fileID: 0}
-  buttonClick: {fileID: 0}
-  rankUp: {fileID: 0}
-  dungeonMusic: {fileID: 0}
-  otherSceneMusic: {fileID: 0}
 --- !u!1 &599821348
 GameObject:
   m_ObjectHideFlags: 0
