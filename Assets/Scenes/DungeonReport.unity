@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 241300677}
   - component: {fileID: 241300676}
   - component: {fileID: 241300675}
+  - component: {fileID: 241300678}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -282,6 +283,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &241300678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241300674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcd38ca7e9fe4b468d7aabc05cffff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAspect: 0.5625
 --- !u!1 &261108664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1603,7 @@ MonoBehaviour:
   sfxSource: {fileID: 1134951585}
   swordSwing: {fileID: 8300000, guid: 0b9b78df53f86054fb402e737489d039, type: 3}
   enemyHurt: {fileID: 8300000, guid: 56a43bab217e0054792c724a616eefa6, type: 3}
+  enemyDead: {fileID: 0}
   playerHurt: {fileID: 8300000, guid: e4892ee7a2afe6d42ab5a7ed6d8bbfac, type: 3}
   parry: {fileID: 8300000, guid: a8ed03ea8ed6d494bbb0aaef0cd2e773, type: 3}
   fireball: {fileID: 8300000, guid: 6ec7d4e2fa69db2468f396d23beb004a, type: 3}
