@@ -30,6 +30,7 @@ public class EnemyCombat : MonoBehaviour
     public FloorManager floorManager;
     public PlayerHealth playerHealth;
     public EnemyHealth enemyHealth;
+    public AudioManager audioManager;
 
     public int damageOnHit;
 
@@ -41,6 +42,9 @@ public class EnemyCombat : MonoBehaviour
 
     void Start()
     {
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+
         SetupDamageFromFloor();
         decisionTimer = decisionInterval;
         UpdateVisual();
@@ -116,6 +120,9 @@ public class EnemyCombat : MonoBehaviour
 
         currentState = State.Parried;
         stateTimer = parryDuration;
+
+        if (audioManager != null)
+            audioManager.PlayParry();
     }
 
     public void Die()
@@ -124,6 +131,9 @@ public class EnemyCombat : MonoBehaviour
 
         currentState = State.Dead;
         respawnTimer = respawnDelay;
+
+        if (audioManager != null)
+            audioManager.PlayEnemyDead();
     }
 
     void HandleRespawn()

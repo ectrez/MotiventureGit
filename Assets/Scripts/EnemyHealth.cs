@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public EnemyCombat enemyCombat;
     public Transform fillTransform;
     public PlayerStats playerStats;
+    public AudioManager audioManager;
 
     [Header("Death Rewards")]
     public EnemyRewardSpawner rewardSpawner;
@@ -28,6 +29,9 @@ public class EnemyHealth : MonoBehaviour
         if (playerStats == null)
             playerStats = FindFirstObjectByType<PlayerStats>();
 
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+
         ResetForCurrentFloor();
     }
 
@@ -42,6 +46,9 @@ public class EnemyHealth : MonoBehaviour
             currentHealth = 0;
 
         UpdateBar();
+
+        if (audioManager != null)
+            audioManager.PlayEnemyHurt();
 
         if (currentHealth == 0)
         {
@@ -71,7 +78,7 @@ public class EnemyHealth : MonoBehaviour
         }
 
         if (rewardSpawner != null)
-            rewardSpawner.SpawnRewards();
+            rewardSpawner.SpawnRewards(xpReward, goldReward);
     }
 
     public void ResetForCurrentFloor()

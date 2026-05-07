@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public FloorManager floorManager;
     public Transform fillTransform;
     public ScreenHueEffects hueEffects;
+    public AudioManager audioManager;
 
     public int maxHealth;
     public int currentHealth;
@@ -18,6 +19,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+
         ResetToFullHealth();
     }
 
@@ -31,6 +35,9 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
 
         UpdateBar();
+
+        if (audioManager != null)
+            audioManager.PlayPlayerHurt();
 
         if (hueEffects != null)
             hueEffects.PlayDamageHue();

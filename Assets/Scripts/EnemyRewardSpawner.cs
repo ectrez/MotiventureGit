@@ -8,30 +8,28 @@ public class EnemyRewardSpawner : MonoBehaviour
     public RectTransform spawnArea;
     public Transform canvasTransform;
 
-    public void SpawnRewards()
+    public void SpawnRewards(int xpAmount, int goldAmount)
     {
-        SpawnXP();
-        SpawnGold();
+        SpawnXP(xpAmount);
+        SpawnGold(goldAmount);
     }
 
-    void SpawnXP()
+    void SpawnXP(int xpAmount)
     {
         GameObject obj = Instantiate(xpPrefab, canvasTransform);
         obj.transform.position = GetRandomPosition();
 
-        obj.GetComponent<FloatingXPText>().Setup("+1XP");
+        obj.GetComponent<FloatingXPText>().Setup("+" + xpAmount + "XP");
 
         obj.SetActive(true);
     }
 
-    void SpawnGold()
+    void SpawnGold(int goldAmount)
     {
-        int gold = Random.Range(1, 4);
-
         GameObject obj = Instantiate(goldPrefab, canvasTransform);
         obj.transform.position = GetRandomPosition();
 
-        obj.GetComponent<FloatingXPText>().Setup("+   " + gold + " Gold");
+        obj.GetComponent<FloatingXPText>().Setup("+   " + goldAmount + " Gold");
 
         obj.SetActive(true);
     }

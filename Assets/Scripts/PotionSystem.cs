@@ -7,6 +7,7 @@ public class PotionSystem : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerMana playerMana;
     public PlayerCombat playerCombat;
+    public AudioManager audioManager;
 
     public Button potionButton;
     public TextMeshProUGUI potionCountText;
@@ -16,6 +17,9 @@ public class PotionSystem : MonoBehaviour
 
     void Start()
     {
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+
         ResetPotionsForRun();
     }
 
@@ -36,6 +40,9 @@ public class PotionSystem : MonoBehaviour
 
         playerHealth.HealThirtyPercent();
         playerMana.RestoreFullMana();
+
+        if (audioManager != null)
+            audioManager.PlayPotionUse();
 
         if (playerCombat != null)
             playerCombat.UsePotionVisual();

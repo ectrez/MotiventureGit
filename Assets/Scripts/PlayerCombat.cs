@@ -30,6 +30,7 @@ public class PlayerCombat : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerMana playerMana;
     public ScreenHueEffects hueEffects;
+    public AudioManager audioManager;
 
     private Direction currentDirection = Direction.Left;
 
@@ -41,6 +42,12 @@ public class PlayerCombat : MonoBehaviour
 
     private bool isCastingFireball = false;
     private float fireballCastTimer = 0f;
+
+    void Start()
+    {
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+    }
 
     void Update()
     {
@@ -79,6 +86,9 @@ public class PlayerCombat : MonoBehaviour
     {
         isSwinging = true;
         swingTimer = swingDuration;
+
+        if (audioManager != null)
+            audioManager.PlaySwordSwing();
     }
 
     public void UsePotionVisual()
@@ -104,6 +114,9 @@ public class PlayerCombat : MonoBehaviour
 
         isCastingFireball = true;
         fireballCastTimer = fireballCastDuration;
+
+        if (audioManager != null)
+            audioManager.PlayFireball();
 
         enemyHealth.TakeDamage(15);
     }
